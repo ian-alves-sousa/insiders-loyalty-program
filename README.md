@@ -225,7 +225,7 @@ Os seguintes algoritmos de Machine Learning foram aplicados:
 
 O método de cross-validation foi utilizado em todos os modelos.
 
-# 6. Performance do Modelo
+# 6. Resultados de Negócio
 
 Para medir o desempenho dos modelos, usaremos o método de validação cruzada que evita que o modelo seja superajustado quando o modelo recebe alguns dados que nunca viu antes (garantindo a generalização). 
 
@@ -245,7 +245,7 @@ Dessa forma, ambos os modelos passaram por um **HYPERPARAMETER FINE TUNING**, on
   <img src="img/RS.png" alt="RS">
 </p>
 
-# 7. Pontuação Final
+# 7. Modelo em Produção
 
 Esse processo foi repetido durante os dois dias da competição. Ao criar uma nova feature ou gerar um novo Insight depois da Exploração dos Dados todo o modelo era treinado novamente e a métrica avaliada, caso o erro fosse menor que o da última submissão, uma nova tentativa era feita.
 
@@ -295,7 +295,7 @@ Neste projeto, todas as etapas necessárias foram realizadas para implementar um
 
 Tendo em vista esses resultados, o projeto alcançou seu objetivo de encontrar uma solução simples e assertiva para previsão de vendas semanais, realizando o projeto em apenas dois dias. E o principal foi melhorar 283% nesse meio tempo.
 
-# 9. Aprendizados e Trabalhos Futuros
+# 9. Aprendizados
 
 **Aprendizados**
 
@@ -313,7 +313,7 @@ Tendo em vista esses resultados, o projeto alcançou seu objetivo de encontrar u
 - Traduzir os valores dos erros em US$, contendo o melhor e o pior cenário por loja, para melhor visualização e análise do time de negócio;
 - Aprofundar a compreensão do desempenho das lojas com base em seus tipos específicos de produtos, especialmente as lojas de eletrodomésticos. O objetivo é extrair insights que nos permitam otimizar a alocação de recursos, concentrando nossos esforços em áreas estratégicas que impulsionem o desempenho global da EletroPlaza Store.
 
-# 10. Composição do Time
+# 10. Trabalhos Futuros
 
 <a href="https://www.linkedin.com/in/christianods/" target="_blank">Christiano Bruneli Peres</a><br>
 <a href="https://www.linkedin.com/in/ian-alves-sousa/" target="_blank">Ian Alves Sousa</a><br>
