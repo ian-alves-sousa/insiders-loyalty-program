@@ -1,16 +1,14 @@
-# Weekly Eletro Plaza Sales Forecasting
+# Customer Loyalty Program for an E-Commerce
 
 <div align="center">
-<img src="img/img_capa.png" />
+<img src="img/capa.png" />
 </div>
 
 # Introdução
 
-Este é um projeto end-to-end de Data Science de um modelo de regressão adaptada para séries temporais. E foi proposto como problema de negócio para o Hackday 7 da Comunidade DS.
+Este é um projeto end-to-end de Data Science de um modelo de clusterização. No qual criamos um script focado em encontrar os melhores clientes que irão participar do grupo Insiders. A clusterização foi colocado em produção na AWS.
 
-O objetivo principal desse projeto é fazer a previsão das vendas semanais da última semana do ano da empresa Eletro Plaza, e como as últimas semanas do ano contém eventos como Black Friday e Natal, a métrica usada para rankear os melhores times na competição foi o RMSE, onde as 3 equipes com os menos valores do erro se classificavam para a final.
-
-Este repositório contém a solução para o problema do Kaggle (criado especificamente para o Hackday 7) que o time utilizou para chegar no TOP 3 da competição e se classificar para a final: [https://www.kaggle.com/competitions/test-hackday-7/overview](https://www.kaggle.com/competitions/test-hackday-7/overview)
+Este repositório contém a solução para a resolução de um problema do Kaggle, contudo, o mesmo não está mais disponível para resolução, e portanto, sua página foi desativada.
 
 Esse projeto faz parte da "Comunidade DS", que é um ambiente de estudo que promove o aprendizado, execução, e discussão de projetos de Data Science.
 
@@ -29,115 +27,72 @@ Esse projeto foi desenvolvido seguindo o método CRISP-DS(Cross-Industry Standar
 
 ![crisp!](img/crisp.png)
 
-Nesse projeto em específico, como era voltado para a competição, o plano do time era fazer ciclos rápidos e gerar submissões para pontuar cada vez melhor na competição.
-
-Dessa forma, os capítulos de Avaliação dos Resultados do Modelo e Tradução para Negócio e Modelo em Produção não foram realizados durante a competição, pois o intuito era treinar o modelo e gerar um RMSE menor que o baseline proposto.
-
 ### Planejamento
 
 - [1. Descrição e Problema de Negócio](#1-descrição-e-problema-de-negócio)
 - [2. Base de Dados e Premissas de Negócio](#2-base-de-dados-e-premissas-de-negócio)
 - [3. Estratégia de Solução](#3-estratégia-de-solução)
-- [4. Exploration Data Analysis](#4-exploration-data-analysis)
+- [4. Top Insights](#4-top-insights)
 - [5. Seleção do Modelo de Machine Learning](#5-seleção-do-modelo-de-machine-learning)
-- [6. Performance do Modelo](#6-performance-do-modelo)
-- [7. Pontuação Final](#7-pontuação-final)
+- [6. Resultados de Negócio](#6-resultados-de-negócio)
+- [7. Modelo em Produção](#7-modelo-em-produção)
 - [8. Conclusão](#8-conclusão)
-- [9. Aprendizados e Trabalhos Futuros](#9-aprendizados-e-trabalhos-futuros)
-- [10. Composição do Time](#10-composição-do-time)
+- [9. Aprendizados](#9-aprendizados)
+- [10. Trabalhos Futuros](#10-trabalhos-futuros)
 
 # 1. Descrição e Problema de Negócio
 
 ### 1.1 Descrição
 
-A EletroPlaza Store é um conglomerado de lojas presente em diversos países do mundo. Apesar da presença online da marca, as vendas são predominantemente físicas. A multinacional atua com eletrônicos, eletrodomésticos e acessórios em geral, oferecendo produtos acessíveis e de qualidade para uma vasta gama de clientes.
+A empresa All in One Place é uma empresa Outlet Multimarcas, comercializa produtos de segunda linha de várias marcas a um preço menor, através de um e-commerce.
 
 ### 1.2 Problema de Negócio
 
-Após diversos investimentos realizados nos setores de vendas, marketing e desenvolvimento de produtos, a empresa teve um grande salto em seu faturamento no último ano. Porém, junto ao faturamento, vieram novos desafios em tentar entender precisamente como as vendas vão continuar se comportando nas próximas semanas.
+A empresa All in One Place é uma empresa Outlet Multimarcas, comercializa produtos de segunda linha de várias marcas a um preço menor, através de um e-commerce.
 
-O ano está chegando ao fim e a Black Friday e o Natal estão se aproximando. As vendas tendem a subir exponencialmente ainda mais nessa época e os dados de comparação do ano passado já não servem mais como termômetro para a empresa. Além disso, a equipe de negócio tem uma meta de faturamento e está preocupada se conseguirá alcançá-la. A urgência em entender os possíveis resultados é grande.
+Em um pouco mais de 1 ano de operação, o time de marketing percebeu que alguns clientes da sua base compram produtos mais caros, com alta frequência e acabam contribuindo com uma parcela significativa do faturamento da empresa.
 
-O desafio da sua equipe, formada por cientistas e analistas de dados, é construir uma solução que preveja as vendas semanais das lojas e de seus variados setores para as 5 semanas finais do ano. Deste modo, os gestores da EletroPlaza Store poderão definir planos futuros, organizar estoques, calcular receitas, decidir se farão novos investimentos ou não e onde devem alocar estes novos investimentos, através de campanhas mais eficientes de marketing e vendas.
+Baseado nessa percepção o time de marketing vai lançar um programa de fidelidade para os melhores clientes da base, chamado **Insiders**, mas o time não tem um conhecimento avançado em análise de dados para eleger os participantes do programa.
 
-Os dados disponíveis para a previsão são referentes às vendas realizadas do início do ano vigente até o momento. Cada linha representa um setor específico de uma loja específica naquela determinada semana. São fornecidas diversas informações para análise, inclusive dados externos como temperatura, preço de combustível e taxa de desemprego. Ainda, devido a urgência da solicitação, há diversos dados faltantes na base e a sua equipe não tem tempo hábil o suficiente para coletá-los, devendo buscar soluções alternativas para que mesmo assim consiga realizar previsões eficazes.
-
-**Após determinar os valores das vendas, a missão da sua equipe é enviar um arquivo .csv contendo os identificadores de cada registro e os respectivos valores de venda para a equipe de negócio.**
+**Para tal desenvolverei um produto de dados que determine os clientes elegíveis permitindo ao time de Marketing tomar ações personalizadas e exclusivas ao grupo, de modo a aumentar o faturamento e frequência de compra.**
 
 ### 1.3 Expectativas
 
-Os gestores da EletroPlaza Store esperam poder:
+Os gestores da All in One Place esperam poder:
 
-- Definir planos;
-- Organizar estoques;
-- Calcular receitas;
-- Decidir se farão novos investimentos ou não;
-- Decidir onde devem alocar estes novos investimentos, mediante campanhas mais eficientes de marketing e vendas.
-
-### 1.4 Métrica de Avaliação
-
-A métrica de performance proposta para esse desafio é a raiz quadrada do erro quadrático médio (RMSE), que nada mais é o desvio padrão dos valores residuais, conforme mostra a Equação 1:
-
-<p align="center">
-  <img src="img/rmse.png" alt="RMSE">
-</p>
-
-As três equipes que alcançarem o menor RMSE largam em vantagem e passarão para a próxima etapa.
+- Saber quem são os clientes Insiders;
+- Saber aqal o comportamento de compra do cliente Insider;
+- Monitorar a mudança dos clusters;
+- Visualizar os valores dos cluters e suas mudanças em tempo real;
+- Decidir quais serão as estratégias usadas no programa de fidelidade.
 
 # 2. Base de Dados e Premissas de Negócio
 
 ## 2.1 Base de Dados
 
-O conjunto de dados total possui os seguintes arquivos:
-
-- stores.csv - características das lojas
-- train.csv - dados de treino
-- features.csv - atributos complementares
-- test.csv - dados de teste
-- sample_submission.csv - exemplo de submissão
-
-Onde cada um apresenta as seguintes features:
-
-**train.csv**
-
-| **Feature**     | **Description**                             |
-| --------------- | ------------------------------------------- |
-| id              | identificador único do registro             |
-| loja            | identificador único da loja                 |
-| setor           | setor específico da loja                    |
-| data            | semana (mês-dia) em que ocorreram as vendas |
-| vendas_semanais | valor total das vendas semanais, em US$     |
-| feriado         | se há feriado ou não na semana              |
-
-**features.csv**
+O conjunto de dados total possui as seguintes informações:
+Onde cada linha é referente a uma transação (produto comprado).
 
 | **Feature**            | **Description**                                                                   |
 | ---------------------- | --------------------------------------------------------------------------------- |
-| loja                   | identificador único da loja                                                       |
-| data                   | semana (mês-dia) em que ocorreram as vendas                                       |
-| temperatura            | temperatura média da loja na semana, em °C                                        |
-| combustivel            | preço médio do combustível na semana, em US$                                      |
-| desconto_1             | desconto promocional especial do tipo 1                                           |
-| desconto_2             | desconto promocional especial do tipo 2                                           |
-| desconto_3             | desconto promocional especial do tipo 3                                           |
-| desconto_4             | desconto promocional especial do tipo 4                                           |
-| desconto_5             | desconto promocional especial do tipo 5                                           |
-| desemprego             | taxa média de desemprego do país na semana                                        |
-| feriado                | se há feriado ou não na semana                                                    |
-| distancia_competidores | distância média entre as lojas competidoras, em polegadas                         |
-| clientes               | quantidades de clientes presentes na loja, em média diária, durante aquela semana |
-
-**stores.csv**
-
-| **Feature** | **Description**                             |
-| ----------- | ------------------------------------------- |
-| loja        | identificador único da loja;                |
-| tipo        | eletrônico, eletrodomésticos ou acessórios; |
-| tamanho     | tamanho da loja, unidade não definida.      |
+| invoice_no             | id da compra                                                                      |
+| stock_code             | id do produto                                                                     |
+| description            | descrição do produto                                                              |
+| quantity               | quantidade comprada do produto                                                    |
+| invoice_date           | data da compra                                                                    |
+| unit_price             | preço unitário do produto                                                         |
+| customer_id            | id do cliente                                                                     |
+| country                | país de entrega                                                                   |
 
 ## 2.2 Premissas de Negócio
 
-Para iniciar o projeto é necessário fazer uma junção (merge) dos 3 arquivos apresentados, dessa forma, criando um dataset único onde cada linha representa a venda semanal de um setor de uma loja específica, além de conter especificações da loja e informações complementares que podem ajudar e explicar a variável resposta como o preço do combustível na semana, a taxa de desemprego e principalmente o número de descontos.
+Com base em pesquisa de mercado foram tomadas as seguintes suposições de negócio:
+
+- Remoção de itens com preço inferior a 0.04.
+- Tirar da base os cliente não identificados e aqueles que tem apenas uma compra no período específicado.
+- Itens com quantidade negativa ou com o número do pedido destacando a letra 'C' serão considerados estornos.
+- Códigos de estoque como 'POST', 'D', 'DOT', 'M', 'S', 'AMAZONFEE', 'm', 'DCGSSBOY','DCGSSGIRL', 'PADS', 'B', 'CRUK' serão removidos por não haver clareza quanto a sua finalidade.
+- Removidas compras de clientes para regiões não especificadas ou inconclusivas.
 
 # 3. Estratégia de Solução
 
