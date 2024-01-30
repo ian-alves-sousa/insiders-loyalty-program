@@ -100,53 +100,51 @@ A estratégia de solução foi a seguinte:
 
 ### Passo 01. Descrição dos Dados
 
-Nesse passo foi verificado alguns aspectos do conjunto de dados, como: nome de colunas, dimensões, tipos de dados, checagem de dados faltantes (NA), análise descritiva dos dados e quais suas variáveis categóricas.
+Coleto os dados e realizo uma breve análise e suas estatísticas, também limpo alguns dados com potenciais comprometedoras, o meu objetivo se concentra está em ganhar conhecimento inicial do problema em que estou lidando e começar a planejar quais ferramentas devo utilizar na manipulação para os algoritmos.
 
-### Passo 02. Featuring Engineering
+### Passo 02. Filtragem de Variáveis
 
-Na featuring engineering foi derivado novos atributos(colunas) baseados nas variáveis originais, possibilitando uma melhor descrição do fenômeno daquela variável.
+Nesta etapa busco remover algumas variáveis criadas para auxiliar o processo de Feature Engineering, também removo a coluna 'description' por não conter informação relevante.
 
-As principais features criadas nessa etapa foram colunas derivando a data, como dia, mês, semana do mês e semana do ano, além de classificação da loja dependendo do seu tamanho e a soma dos descontos em apenas uma variável afim de diminuir a dimensionalidade do problema.
+### Passo 03. Featuring Engineering
 
-### Passo 03. Filtragem de Variáveis
-
-Verificando a necessidade de filtrar o conjunto de dados com base em uma variável que não interessa ao projeto em si. Onde nesse projeto em questão nenhuma variável foi deixada de lado.
+Desenvolvo hipóteses iniciais sobre o negócio para poder derivar novos atributos com base nas variáveis originais para descrever melhor o fenômeno a ser compreendido, estes atributos podem me auxiliar na validação de hipóteses e no treinamento do modelo de Machine Learning.
 
 ### Passo 04. Análise Exploratória dos Dados (EDA)
 
-Exploração dos Dados com objetivo de encontrar Insights para o melhor entendimento do Negócio.
-Foram feitas também análises univariadas, bivariadas e multivariadas, obtendo algumas propriedades estatísticas que as descrevem, e mais importante respondendo perguntas sobre o negócio.
-
-Através dessa etapas conseguimos chegar em alguns pontos que nos ajudaram a fazer o modelo a performar melhor:
-
-- **Excluir as linhas com vendas semanais nulas ou menores que 1**: Onde essas eram linhas que não conseguiríamos prover, pois se tratam de casos onde os setores das lojas não tiveram vendas, ou tiveram devoluções e estornos. Assim, esse comportamento poderia enviezar o modelo, dessa forma, preferimos excluir essas linhas do dataset.
-- **Manter coluna dos descontos**: Haviam poucas semanas com desconto, e eram as últimas semanas do dataset, então no início pensamos em excluir essas colunas. Contudo, durante os eventos de Natal e Black Friday a estratégia dos descontos é muito utilizada para atrair e fidelizar clientes, assim, analisando o dataset de teste, vimos que várias linhas tinham dados de desconto. Decidimos então trabalhar com essa coluna e focar em ajudar ela a explicar o problema, visto que essa pode ser a feature que mais impacta no dataset de teste.
+Realizo estudos das variáveis univariadas e como os dados se comportam bivariados, também busco compreender o comportamento de cada variável e suas correlações com as demais.
 
 ### Passo 05. Preparação dos Dados
 
 Sessão que trata da preparação dos dados para que os algoritmos de Machine Learning possam ser aplicados. Foram realizados alguns tipos de escala e encoding para que as variáveis categóricas se tornassem numéricas.
 
+### Passo 06. Estudo do Espaço
+
+Realizo transformações do espaço de dados com o objetivo de gerar uma melhor segmentação dos clientes afim de encontrar os melhores perfis.
+
 ### Passo 06. Seleção de Variáveis do Algoritmo
 
-Na seleção dos atributos foi realizado um estudo de importância das colunas, no qual os atributos mais significativos foram selecionados para um estudo mais aprofundado com intuito de gerar melhor entendimento e criar features que explicam melhor a variável resposta. Não houve fitragem de variáveis por se tratar de uma competição.
+Na seleção dos atributos foi realizado um estudo de importância das colunas, no qual os atributos mais significativos foram selecionados para um estudo mais aprofundado com intuito de gerar melhor entendimento e criar features que separam melhor os dados.
 
 ### Passo 07. Modelo de Machine Learning
 
-Realização do treinamento dos modelos de Machine Learning. O modelo que apresentou o menor RMSE diante a base de dados com cross-validation aplicada seguiu adiante para a hiper parametrização das variáveis daquele modelo, visando otimizar a generalização do modelo.
+Realização do treinamento dos modelos de Machine Learning. O modelo que apresentou melhor Silhouette Score com um número de cluster igual a 8 foi escolhido.
 
 ### Passo 08. Hyper Parameter Fine Tuning
 
-Foi encontrado os melhores parâmetros que maximizavam o aprendizado do modelo. Esses parâmetros foram definidos com base no método de RandomSearch.
+Foi encontrado os melhores parâmetros que faziam a clusterização convergir para o mesmo valor sempre.
+
+### Passo 09. Cluster Analysis
+
+Através dos clusters gerados pelo modelo, uma análise foi feita com o intuito de entender melhor as características de cada cluster, identificar o cluster Insiders e responder as perguntas de negócio.
 
 ### Passo 9. Deploy do Modelo em Produção
 
-Com o modelo e seus parâmetros escolhidos, o mesmo treinou a base completa dos dados (sem divisão de treino e teste) e foi usado para prever os valores para a submissão. Dessa forma, cada vez que um modelo era treinado e apresentava uma performance melhor (menor erro RMSE) o mesmo era usado para prever em cima dos dados de submissão e com isso o arquivo era enviado para o Kaggle.
+Nesta etapa o projeto é disponibilizado via Dashboard no Metabase com as informações de cada grupo para o programa de fidelidade. Com isso, é desenvolvido uma arquitetura na AWS para colocar esse projeto em produção, com o banco, dataset, encoders, modelos e máquina virtual direto na cloud.
 
-### Passo 10. Apresentação Final
+# 4. Top Insights
 
-Como a equipe classificou-se para a final (ficamos no TOP 3), foi criado um slide com a explicação dos métodos utilizados para encontrar o menor erro.
-
-# 4. Exploration Data Analysis
+----------------- PAREI AQUI --------------------------
 
 ## 4.1 Análise Univariada
 
