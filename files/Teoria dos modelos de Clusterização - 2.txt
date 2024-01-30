@@ -1,0 +1,41 @@
+Hierarchical Clustering - H-Clustering
+Considerações
+Cada ponto é considerao um cluster
+Calcular a distância entre todos os pontos do espaço, nesse caso, todos os clusters
+Identifica o vizinho mais próximo a partir da menor distância
+Cria um novo cluster com esse viinho mais próximo incluso
+Repete o processo
+
+Critério de Ligação - Linkage Criteria - Como vou calcular a distância entre os clusters?
+Entre os pontos mais próximos de diferentes clusters (Single-Linkage)
+Entre o pontos mais distantes de diferentes clusters (Complete-Linkage)
+Entre os pontos médios de diferentes clusters (Average-Linkage)
+Distância média entre todos pontos de diferentes clusters (Group-Linkage)
+Distância Quadrárica entre tods os pontos de diferentes clusters (Ward's Method)
+
+Existem 5 formas diferentes para calculas a distância em cluster hierárquico
+
+Dendograma - Estutruta hierárquica montada através das distâncias dos pontos aos seus clusters onde conseguimos fazer os recortes para descobrir o valor de k
+Precisa da definição do K no Dendograma para aplicar no modelo e ver as métricas de performance
+De forma visual, enchergamos a aglomeração dos pontos
+
+Não é robusto a outlier, mas depende do Linkage que escolhe, diminui a influencia do outlier, mas aumenta o ruído
+Demora demais se tiver um volume grande de dados
+
+Características
+Número de cluster é um hiperparâmetro
+Utiliza métricas de distância
+Definição do tió de ligação
+Definição do K, através do dendograma
+
+Vantagens
+Simples de implementar
+Fácil de definir o número k de clusters
+
+Desvantagens
+Uma vez o ponto atribuído a um cluster, não há modificações
+Alta complexidade, Lendo para conjunto de dados muito grandes
+Sensível na presença de outliers
+Escolha do critério de ligação, sendo uma escolha a mais, tornado-se mais difícil de tunar
+
+

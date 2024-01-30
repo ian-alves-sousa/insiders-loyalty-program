@@ -1,0 +1,10 @@
+Ao criar features ou oriundo dos próprios dados, os mesmos ficam muito bagunçados em suas dimensões.
+Dessa forma, fica difícil encontrar os clusters nessa bagunça
+
+O Espaço de Embedding coloca esses dados em uma disposição que os organiza
+Usando a transformação linear, usando transformações de espaço nos dados projetando-os em outro, produzindo um espaço novo com mais organização
+
+Como encontrar esses espaços mais organizados?
+Aplicando Algebra Linear nas features
+Solicitando a um algoritmo de machine learning construir um embedding pra ti
+

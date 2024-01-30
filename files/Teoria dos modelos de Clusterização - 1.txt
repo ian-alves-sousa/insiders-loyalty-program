@@ -1,0 +1,94 @@
+K-Means
+O número de clusters é definido antes, ou um chute para testes
+Inicializa o centróide aleatoriamente (não faz parte do conjunto de dados)
+Calcula a distância de todos os pontos em relação ao centróide 1
+Calcula a distância de todos os pontos em relação ao centróide 2
+Determino o ponto ao cluster de menor distância - Classifica cada ponto com relação à menor distância para esse centróide
+Reposiciono o centróide (fazendo a média entre os pontos) e refaz o processo, calculando as distâncias de todos os pontos aos novos centróides
+Atribui os pontos as centróides mais próximas
+Reposiciona o centro e refaz o processo
+Vai fazendo isso até que a média dos pontos não altere o centróide ou os pontos não trocarem de cluster
+
+Características do K-Means
+Número de cluster é um hiperparâmetro
+Métricas de distâncias - Pode ser mudado a forma do cálcul da distância
+Inicializa aleatóriamente os centróides
+Clusters circulares - Não tem maleabilidade no formato do cluster
+Cada ponto pertence à um único cluster
+Os dados precisam estar em escalar comparáveis
+
+Vantagens K-Means
+Simples de implementar
+Funciona rápido para grandes conjuntos de dados
+Garante convergência
+
+Desvantagens K-Mens
+Escoloha do k manualmente
+Depende dos valores iniciais do centróide
+Sensível a dados outliers
+Encontra apenas clusters circulares
+Similiradade baseado em distância sobre o aumento da dimensionalidade
+
+
+
+
+
+
+
+GMM - Gaussian Mixture Model
+Escolha o número de cusrvas Gaussianas
+Inicializar os parâmetros aleatoriamente no espaço
+Calcular a probabilidade de cada ponto pertencer a uma das k curvas Gaussianas - Expectation
+Atualizar os parâmetros das curvas Gaussianas Recalculando os valores da média e desvio padrão das mesmas - Maximization
+Recalcular a probabilidad de cada ponto pertencer a uma das k curvas Gaussianas
+
+Probabilidade de um ponto pertencer a curva Gaussiana
+Através do Teorema de Bayes
+Função Densidade de Probabilidade
+
+Atualização dos parâmetros
+Média ponderada entre a nova probabilidade e o ponto
+Tem o controle da matriz de covariância
+
+Características do GMM
+Possiu 3 hiperparâmetros
+Número de clusters k
+Média de cada cluster k
+Variância de cada cluster l
+
+Probabilidade do ponto pertencer à uma distribuição de probabilidade - Ver a incertezas dos pontos, não é categórico
+Ca ponto tem um grau de incerteza sobre pertencer aos clusters
+Inicialização aletória dos parâmetros
+Formato do cluster pode ser ajustado. Forma clusters elípticos
+
+Vantagens GMM
+Flexíveis em relação aos formatos dos clusters
+Permite incluir incertezas na atribuição do ponto ao cluster
+Robusto aos outliers - Precisa conferir isso
+Não depende de métricas de distâncias, pois calcula a probabilidade e não distorce facilmente em alta dimensionalidade
+
+Desvantagens GMM
+Alto custo computacional
+Depende dos valores iniciais do centróide
+Depende de um algoritmo de otimização
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

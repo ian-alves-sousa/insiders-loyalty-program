@@ -1,0 +1,57 @@
+DBSAN - Density-Based Spatial Clustering Application Noise
+Baseado em densidade - quantidade sobre área
+Trabalha buscando as áreas com mais concentração de pontos
+Etapas:
+Definir um raio
+Definir o número mínimo de pontos da vizinhança (pontos dentro do raio) - Se o raio tem muitos pontos tem alta densidade (mais pontos que o número definido)
+Se o ponto X, dentro de uma vizinhança tem mais pontos que o número mínimo, logo core point
+Se o ponto X, dentro de uma vizinhança tem menos pontos que o mínimo e ele é vizinho de um core point, logo border point
+Se o ponto X, dentro de uma vizinhança tem menos pontos que o mínimo e ele não é vizinho de um core point, logo noise point ou outlier
+Esse proceso classifica todos os pontos, sendo que o ponto que define o raio também conta na vizinhança
+
+Avalia os pontos marcados
+Olha primeiro para cada Core Point
+Se o core point não estiver atribuído a um cluster, então ele atribui ao mesmo do vizinho core point
+Se não, cria um novo
+
+Se for border point
+Atribuí para o mesmo cluster do border point mais próximo
+
+Esses dois passos, de classificar os pontos e avaliá-los é feito simultaneamente
+
+O algoritmo que lhe retorna o número de clusters
+
+Resumo do funcionamento do DBSCAN
+Pontos vizinhos são determinados pelo valor do raio
+Densidade é determinada pelo número mínimo de pontos dentro da Vizinhança - MinPoint
+Se o valor do raio é muito pequeno 
+- Grande parte dos dados é considerado outlier
+Se o valor do raio é muito grande
+- Os clusters são agrupados - agromera os clusters
+Se o valor de Minpoints é muito pequeno
+- Sensível na presença de outliers
+Se o valor de Minpoint é muito grande
+- Robusto a presença de outliers
+
+
+Vantagens
+Funciona muito bem na presença de outliers - Definindo bem os parâmetros
+Encontrar clusters de diferentes formatos
+Separa muito bem clusters de diferentes densidades
+Encontra o número de clusters automaticamente
+
+Desvantagens
+Dificuldade em separar clusters com densidades parecidas
+Hiperparâmetros são muitos sensíveis e difíceis de encontrar
+Baixa performance com dados em alta dimensionalidade
+
+HDBSCAN - Bom para clusters com densidades variáveis
+
+
+
+
+
+
+
+
+

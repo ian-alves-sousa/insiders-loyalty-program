@@ -1,0 +1,66 @@
+WSS- Soma das distância de todos os pontos para o centróide
+Mostra a compactação dos clusters
+
+O WSS é basicamento a soma das distância entre um centróide iniciado aleatoriamente para os pontos nesse cluster, somando então a soma das distâncias de cada cluster
+
+Escolhemos os pontos onde ocorre a maior variação do WSS
+Olhamos como se fosse o cotovelo, onde ficaria o cotovelo no braço? Esse seria o ponto escolhido
+
+Quanto mais eu aumento o K, menor tende a ficar o WSS, pois como o número de clusters aumenta, há também mais centróides e consequentemente mais pontos pertos desses centróides, diminuindo o valor do WSS.
+
+Buscamos o número de cluster que tenha a maior compactação, dessa forma, escolhemos o ponto que gera a maior variação de WSS para o número de clusters anteriores, pois se tem uma variação no WSS e as próximas variações são menores, isso significa que foi feito um bom agrupamento e qualquer número de clusters maior que eu criei, ele não modifica muito o WSS
+
+Não adianta eu aumentar mais o número de clusters e o WSS não variar o mesmo tanto
+
+Contudo, o número de clusters também pode ser definido pela necessidade do negócio.
+
+Se não um cotovelo visual, mudamos as features para chegar a isso.
+
+SS - Além da compactação, tenta entender a separação entre os clusters
+É medido a distância de cada ponto para todos os demais do mesmo cluster dividido pelo número de distâncias calculadas
+Isso mê da se o cluster é compacto
+
+É medido a distância de cada ponto para todos os pontos que pertence aos outros clusters, que é dividido pelo número de distâncias calculadas
+Assim, é escolhido o menor valor da soma das distâncias normalizada, escolhendo o cluster mais próximo
+Isso me da o quanto os clusters estão distantes entre si
+
+O SS é a subtração entre a separação e a compactação dividido pelo maior valor de distância normalizada entre esses dois.
+Se a1 é maior que b1, valor da negativo e significa que o meu cluster não é muito compacto e tem clusters mais próximos, é um cluster largo
+Custer está tão grande que engloba o outro
+Se b1 é maior que a1 significa que o meu cluster está bem distante
+Clusters estão bem separados
+
+Se o SS se aproxima de 1 temos uma boa clusterização e se está perto de -1 a clusterização não está muito boa, um cluster está englobando o outro
+O SS é a média de todas as silhuetas de todos o pontos
+
+
+
+
+
+----------------------------------------------------------------------------------------
+WSS - Mede a coesão, o quão compactos são os clusters
+SS - Mede a coesão e também a separação entre os clusters
+
+Centróide - Centro do cluster sendo a média das distâncias
+Mesóide - Ponto da mediana dos valores dos clusters, sendo um ponto que pertence ao cluster
+
+A Silhuera é o S1, S2, esse é o valor da Silhueta
+O SS é o valor médio ente as silhuetas7
+
+Análise de Silhueta - Pega o valor do SS de cada ponto de cada cluster e coloca em um gráfico onde o eixo x é o SS, o y é o ponto e a cor é o cluster. Organiza-se então por cluster ordenando os SS do maior para o menor gerando um aspecto de faca, como se fosse uma silhueta.
+
+Analisando a Silhueta conseguimos identificar se precisa aumentar o número de clusters ou se aquela divisão já é satisfatória. Um shape  mais uniforme, onde o último ponto é um valor positivo alto indica que esse cluster além de estar bem compacto apresenta uma longa distância para os demais, contudo, se o shape for no sentido de uma faca, onde os clusters com menor SS o valor é próximo de 0 significa que há pontos muito próximos um dos outros, e além disso, caso o valor do SS for negativo, aquele ponto deveria pertencer a outro cluster, e pode ser que seja necessário aumentar o número de clusters para corrigir isso. Quanto menos pontos com SS negativo melhor o fit dos pontos com os clusters.
+
+A faca significa que o cluster é cumprido e próximo de outro, clusters colados.
+Quanto mais quadrado, mais condensado e distante um cluster está dos outros.
+Se as siluetas tem o mesmo tamanho, significa que eles tem quase o mesmo número de pontos.
+
+
+No UMAP vemos como estão os clusters na alta dimensionalidade
+Dessa forma, podemos ver como os dados estão organizados, se estiver bem separados, os clusters estão desorganizados e não está muito bom
+
+
+
+
+
+

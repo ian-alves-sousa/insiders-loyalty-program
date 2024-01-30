@@ -1,0 +1,22 @@
+Aprendizado Supervisionado = O resultado do modelo pode ser validado, tem uma resposta para ter uma comparação (Classificação ou Regressão)
+
+Aprendizado Não Supervisionado = Agrupa as entidades pela similaridade dos atributos
+Tem um ponto central que representa todo o grupo (persona,centróide)
+Não tem reposta para validar
+
+Aprendizado Semi-Supervisionado = Agente atuando sobre o ambiente
+O agente faz uma ação no ambiente e recebe uma recompensa, depois disso, o agente começa a escolher apenas as ações que maximizam a recompensa
+Explora inicialmente maneira aleatória, mas na segunda exploração já vai com o aprendizado anterior, vai aprendendo com o resultado gerado pelo modelo
+
+Desafios do aprendizado não supervisionado
+- Não existe resposta errada
+Sempre haverá clusters para qualquer conjunto de dados
+Toda a fundamentação do Machine Learning vem do erro
+A performance é medida na prática, o cluster criado performa melhor que o grupo normal?
+- Poucas produções científicas em relação ao aprendizado supervisionado
+Pesquisas mais direcionadas ao aprendizado supervisionado
+Pouca fundamentação teórica
+- Clusterização é um meio e não o produto final
+Agrupamento ajuda na sumarização dos dados
+Agrupamento simplifica ações do time de negócio
+Estudar a base e com e o que foi encontrado tirar insights para as pessoas tomarem decisões
