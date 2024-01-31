@@ -144,179 +144,125 @@ Nesta etapa o projeto é disponibilizado via Dashboard no Metabase com as inform
 
 # 4. Top Insights
 
------------------ PAREI AQUI --------------------------
+### H1 - Os clientes do cluster insiders possuem um volume (faturamento) de compras acima de 10% do total de compras.
 
-## 4.1 Análise Univariada
+**VERDADEIRO** O faturamento do cluster insiders é mais da metade do total de faturamento
 
-- Variáveis Numéricas: o histograma abaixo mostra como está organizada a distribuição das variáveis numéricas do nosso conjunto de dados. Mostra a contagem de cada variável numérica do dataset.
-
-<p align="center">
-  <img src="img/uni.png" alt="Numerical-Variables">
-</p>
-
-## 4.2 Análise Bivariada
-
-Por ser um Hackday, nessa etapa gerados hipoteses para validar, entender melhor o negócio e criar features ou filtrar os dados para melhorar o RMSE.
-
-### H1 - Semanas com mais desconto tem maiores vendas semanais
-
-**VERDADEIRO** As semanas que apresentam descontos, apresentam também maiores vendas semanais.
-
-- No primeiro gráfico podemos ver que a frequência das vendas tem um pico no início, mas mostra um grupo de outliers com valores mais altos.
-- O mesmo acontece no segundo gráfico, onde vemos um grupo que se distancia bastante do terceiro quartil.
-- Isso pode evidenciar exatamento as semanas que apresentam desconto, e com isso, tem um comportamento mais atípico quando comparado com os demais meses do ano, mostrando assim a importância dessa coluna para a previsão das vendas semanais das últimas semanas do ano.
-
+- No primeiro gráfico podemos ver a proporção que representa o Gross Revenue dos Insiders.
+- Esse comportamento é comum no varejo, onde poucos clientes são responsáveis por uma grande porção da receita.
 
 ![H1!](img/H1.png)
 
-### H5 - Junho é o mês com menor vendas semanais.
+### H2 - Os clientes Insiders retornaram menos de 20% do total de produtos retornados na base.
 
-**FALSO** - O mês com a menor média de vendas semanais é Janeiro e com a melhor é Julho. (De Janeiro a Outubro)
+**FALSO** - O cluster Insiders retornou quase 70% do total
 
-- No gráfico podemos observar em vermelho as semanas do mês de Janeiro, evidenciando o mês com a menor média nas vendas semanais e o melhor mês em Julho.
-- Dessa forma, é justo imaginar que os clientes não compram em janeiro por estarem guardando o dinheiro do começo do ano para constas como IPTU e IPVA, além disso, eles podem ter usado os bônus de fim de ano para comprar exatamente onde queremos prever, a Balck Friday e o Natal, mostrando a importância do estudo.
+- No gráfico podemos observar que os clientes Insiders são os que mais retornam.
+- Pode ser um comportamento característico desse Ecommerce, onde um grande gasto está atrelado a um alto número de devoluções
 
 ![H2!](img/H2.png)
 
-### H3 - Eletrodoméstico vende mais que Eletrônico.
+### H3 - O Preço Médio dos produtos comprados pelo cluster Insiders é maior que o preço médio total e de todos os clusters.
 
-**VERDADEIRO** - Eletrodomésticos apresentam vendas semanais maiores que eletrônicos.
+**Falso** - O Preço Médio dos produtos comprados pelo cluster Insiders é menor que o total e que outros 5 clusters.
 
-- No gráfico observamos que os clientes tem preferência por comprar eletromésticos, sendo esse o tipo de produto que é a cara da EletroPlaza quando os clientes pensam na marca.
+- No gráfico observamos o Preço Médio do cluster Insiders é de $20.83, isso significa que em média cada produto comprado pelo cliente Insider custa esse preço.
+- Contudo, ele não é dos maiores, isso indica que para se tornar Insider o cliente não precisa comprar produtos caros, mas isso comprar muitos produtos.
 
 ![H3!](img/H3.png)
-
-## 4.3 Análise Multivariada
-
-Essa etapa mostra como cada coluna do dataset está relacionada entre si e nos gera ideias para criar features e testar.
-
-<p align="center">
-  <img src="img/MAPA.png" alt="MAPA">
-</p>
-
-Apesar da pouca correlação, através desse mapa de calor conseguimos destacar que algumas features apresentam as maiores relações com a nossa features preditiva:
-- Tamanho da loja;
-- Setor;
-- Loja/tipo.
-
-### 4.3.1 Features Importance
-
-Além disso, foi gerado um Feature Importance para entender quais features um modelo de árvore mais usaria para prever a variável resposta.
-
-<p align="center">
-  <img src="img/FI.png" alt="FI">
-</p>
-
-Percebemos assim que a **magnitude das vendas semanais está extremamante relacionada ao seu setor**, e o tamanho e tipo ta loja também influenciam na previsão.
 
 # 5. Seleção do Modelo de Machine Learning
 
 Os seguintes algoritmos de Machine Learning foram aplicados:
 
-- Linear Regressor;
-- Linear Regressor - Lasso;
-- Linear Regressor - Ridge;
-- Linear Regressor - Elastic Net;
-- K-NearestNeighbors Regressor;
-- Random Forest Regressor;
-- Light Gradient Boosting Machine Regressor;
-- XGBoost Forest Regressor;
-- Gradient Boosting Regressor;
+- K-Means;
+- GMM;
+- Hierarquical Clustering;
 
-O método de cross-validation foi utilizado em todos os modelos.
+Esses modelos foram aplicados com um número de grupos (k) de 2 a 24 e o melhor algoritmo de agrupamento foi o GMM. Porém, escolhemos k como 8 porque com esse número de grupos é possível ter um bom desempenho do modelo (pontuação de silhueta) e fica mais fácil para a equipe de marketing criar ações direcionadas para cada grupo com um número não tão grande de grupos.
+
+Os algoritmos utilizados para criar os espaços de incorporação foram: PCA, UMAP, t-SNE e uma incorporação baseada em árvores com Random Forest (espaço final).
 
 # 6. Resultados de Negócio
 
-Para medir o desempenho dos modelos, usaremos o método de validação cruzada que evita que o modelo seja superajustado quando o modelo recebe alguns dados que nunca viu antes (garantindo a generalização). 
+## 6.1. Resultados do Modelo
 
-A real performance dos modelos utilizando método CROSS-VALIDATION.
+Para medir o desempenho dos modelos, usamos a métrica Silhouette Score, e para cara modelo encontramos os seguintes valoes: (de 6 a 9 clusters)
 
 <p align="center">
-  <img src="img/comparacao.png" alt="Comparação">
+  <img src="img/results.png" alt="Resultados">
 </p>
 
-Como a competição nos instigava para encontrar o menor RMSE, essa foi a métrica que focamos melhorar. Assim, os modelos que apresentam o menor RMSE no Cross Validation foram:
-- Random Forest Regressor;
-- Light Gradient Boosting Machine Regressor;
+Através dessa tabela, podemos ver que o GMM apresentou os menores valores, contudo, ele foi escolhido como modelo final, devido a análise da silhueta gerada e a análise mais coerente gerada na divisão dos pontos.
 
-Dessa forma, ambos os modelos passaram por um **HYPERPARAMETER FINE TUNING**, onde foram testados diversos pâmetros para esses modelos e os que apresentavam a melhor métrica após o  Cross Validation era usado para gerar o arquivo de submissão, segue abaixo um exemplo do quão perto os valores gerados foram.
+## 6.2 Definições do Cluster
+
+A entrega desse projeto visa destacar o perfil do cluster Insiders para que a equipe de Marketing possa tomar decisões, portanto será listada algumas características do grupo.
+
+Principais características:
+| Cluster Name | Nº Customers | Customers (%) | Gross Revenue | Recency Days | Qty Products |	Qty Returns |
+|--------------|-------------|---------------|---------------|--------------|--------------|-------------------|
+| Insiders     |	466      |	  16.50      |	$8859.36    |	21.26    |   425.40    |   145.79       |
+
+## 6.3 Dashboard no Metabase
+
+A partir da clusterização um Dashboard foi criado no Metabase, o intuito dele é mostrar as características dos Insiders e como ele se diferencia dos demais clusters.
 
 <p align="center">
-  <img src="img/RS.png" alt="RS">
+  <img src="img/metabase.jpeg" alt="Metabase">
 </p>
 
 # 7. Modelo em Produção
 
-Esse processo foi repetido durante os dois dias da competição. Ao criar uma nova feature ou gerar um novo Insight depois da Exploração dos Dados todo o modelo era treinado novamente e a métrica avaliada, caso o erro fosse menor que o da última submissão, uma nova tentativa era feita.
+## 7.1. Diagrama do Modelo em Produção
 
-## 7.1 Tentativas
-
-Assim, algumas ações foram feitas e testadas, segue abaixo o resultado prático:
-
-| **Ação** | **Resultado** |
-| ------------------------------------------- | ------------- |
-| Excluir os registros com vendas semanais nula ou menor que 1 | Melhorou |
-| Retirar os descontos        | Piorou |
-| Preencher os registros com distância faltantes usando um número grande (sem concorrencia)| Estável|
-| Criar colunas de dias e mês| Melhorou|
-| Classificar as lojas pelo tamanho (grande, médio e pequeno)| Melhorou|
-| Somar os descontos em uma coluna| Melhorou|
-
-Assim, a ação que nos fez dar um salto na pontuação foi **Excluir os registros com vendas semanais nula ou menor que 1**.
-
-## 7.2 Insights Acionáveis
-
-Através do projeto e da análise alguns Insights Acionáveis foram criados:
-
-
-**Janeiro apresenta a pior média de vendas semanal e julho a melhor.**
- - Com essa informação, podemos planejar promoções específicas ou lançamentos de produtos no mês de julho, visto que ele apresenta uma boa performance. Sobre janeiro, podemos identificar as campanhas e gerar estratégias de marketing como um saldão pós-ano novo para atrair os clientes e melhorar as vendas desse mês.
-
-**Eletrodomésticos têm vendas superiores a eletrônicos e outros tipos de produtos.**
-- Concentrar esforços de marketing e estoque em eletrodomésticos, talvez com promoções especiais ou pacotes que incluam esses produtos. Com isso, podemos ter um estoque adequado desses tipos de produto, visto que é o carro chefe da empresa e lidera nas vendas.
-
-## 7.3 Ranking Final
-
-A partir dessa construção e de todas as tentativas ficamos na terceira posição como o terceiro menor RMSE tanto no Leaderbord Público quanto Privado (que foi liberado apenas no final da competição):
+O modelo de Machine Learning foi implementado e colocado em produção por meio da AWS, que tem como objetivo possibilitar a criação, execução e operação localizados em nuvem.
 
 <p align="center">
-  <img src="img/FINAL.png" alt="FINAL">
+  <img src="img/diagram_final.png" alt="FINAL">
 </p>
 
-E com esse resultado nos classificamos para a final, que ocorreu 3 dias depois, onde apresentamos o slide do link a seguir:
+## 7.2. AWS
 
-<a href="https://github.com/ian-alves-sousa/hackday_7_sales_prediction_regression/blob/main/Apresentação_%20Eletro%20Plaza%20Store.pdf" target="_blank">Apresentação Final</a>
+Esse projeto foi realizado utilizando o Free Tier da AWS, dessa forma, todas as instâncias foram encerradas. Quando estavam abertas, eram as seguintes:
 
-O contexto do Grinch é que as duas outras equipes que se classificaram para a final tinham nome relacionado ao Natal, dessa forma, fomos para acabar com a comemoração.
+### 7.2.1 S3
+
+<p align="center">
+  <img src="img/S3.png" alt="S3">
+</p>
+
+### 7.2.2 RDS
+
+<p align="center">
+  <img src="img/RDS.png" alt="RDS">
+</p>
+
+### 7.2.3 EC2
+
+<p align="center">
+  <img src="img/EC2.png" alt="EC2">
+</p>
 
 # 8. Conclusão
 
-Neste projeto, todas as etapas necessárias foram realizadas para implementar um projeto completo de Ciência de Dados em uma competição de dados. Foi utilizado o método de gerenciamento de projetos denominado CRISP-DM/DS e obteve-se a terceira menor métrica (RMSE) que levou a equipe para a final do Hackday 7 da Comunidade DS.
+A partir dos resultados do negócio, pode-se concluir que o objetivo do projeto foi alcançado. Os problemas de agrupamento são geralmente mais complexos de resolver, é claro, porque não há variável de resposta. Portanto, é importante ter uma estratégia definida para a abordagem da solução, muitas vezes baseada no conhecimento do negócio.
 
-Tendo em vista esses resultados, o projeto alcançou seu objetivo de encontrar uma solução simples e assertiva para previsão de vendas semanais, realizando o projeto em apenas dois dias. E o principal foi melhorar 283% nesse meio tempo.
+O programa de fidelidade é importante para o negócio porque os Insiders representam grande parte da receita da empresa e segmentar seus clientes ajuda a equipe de marketing a segmentar seus clientes a priorizar e agir com base em seu consumo para aumentar a frequência de vendas e a receita.
 
 # 9. Aprendizados
 
-**Aprendizados**
-
-- Esse problema de regressão no Hackday 7 teve um formato diferente, onde os dados estavam com muitos valores faltantes, e uma análise de dados bem feita seria crucial para conseguir os resultados. Isso nos mostrou a importância de entender o contexto do negócio e os dados para a construção do projeto.
-
-- Assim, a Análise Exploratória de Dados se demonstrou uma das etapas mais importantes do projeto, pois é nessa parte que podemos encontrar Insights de Negócio que promovem novos conhecimentos e até contradições que nos fazem repensar o negócio como um tudo. E através dela que tivemos as ideias para filtragem e criação de features.
-
-- Com pouco tempo para testes, uma boa organização supera a falta de conhecimento. Foi com uma boa divisão de tarefas que o time conseguiu concluir todas as etapas do projeto.
-
-**Trabalhos Futuros**
-
-- Criar novas features, afim de explicar com mais eficiência o os fenômenos do problema e consequentemente gerar resultados melhores.
-- Testar diferentes Encoders na preperação dos dados.
-- Aplicar o balanceamento dos dados e entender como isso influencia na resolução desse problema.
-- Traduzir os valores dos erros em US$, contendo o melhor e o pior cenário por loja, para melhor visualização e análise do time de negócio;
-- Aprofundar a compreensão do desempenho das lojas com base em seus tipos específicos de produtos, especialmente as lojas de eletrodomésticos. O objetivo é extrair insights que nos permitam otimizar a alocação de recursos, concentrando nossos esforços em áreas estratégicas que impulsionem o desempenho global da EletroPlaza Store.
+- **Clustering**: Problemas de clusterização envolvem novas abordagens e não são acompanhados de uma resposta, para tal o resultado deve ser constantemente mensurado.
+- **Embedding**: Embedding constitui em transformações dos dados para um novo espaço teoricamente mais organizado, é possível utilizar em todos os problemas de Ciência de Dados para melhorar a performance ou estudar como é feito a organização, mas é importante notar a perca de explicabilidade do processo.
+- **Pipeline**: Nesse projetofoi desenvolvido uma arquitetura em cloud desenvolvendo toda a arquitetura do seu funcionamento e como se correlaciona, o planejamento ajuda imensamente o sucesso do Deploy.
+- **Clouds**: Foi desenvolvido o deploy na AWS onde houve o aprendizado sobre alguns dos serviços prestados e como implementá-los.
+- **Dashboard**: Utilizou-se da ferramenta Metabase para construir gráficos/tabelas que buscam entregar o resultado esperado.
 
 # 10. Trabalhos Futuros
 
-<a href="https://www.linkedin.com/in/christianods/" target="_blank">Christiano Bruneli Peres</a><br>
-<a href="https://www.linkedin.com/in/ian-alves-sousa/" target="_blank">Ian Alves Sousa</a><br>
-<a href="https://www.linkedin.com/in/paulawehdorn/" target="_blank">Paula Wehdorn Wildemberg</a><br>
-<a href="https://www.linkedin.com/in/victor-bongestab/" target="_blank">Victor Bongestab</a><br>
-<a href="https://www.linkedin.com/in/vinicius-gasperazzo-rosa/" target="_blank">Vinicius Gasperazzo Rosa</a>
+- **Feature Engineering**: Criação de novas features.
+- **Embedding**: Desenvolver um melhor estudo sobre os embeddings para o espaço de dados, novas técnicas, novos testes de diferentes perspectivas, mais colunas de embedding.
+- **Test A/B**: Realizar teste A/B para comprovar a eficiência do projeto.
+- **Faturamento**: Desenvolver previsão de faturamento do novo grupo de Insiders.
+- **Hipóteses**: Desenvolver novas hipóteses de negócio para analisar o comportamento dos Clusters.
+- **Dashboard**: Acompanhar o uso do dashboard e otimizar as informações prestadas, também disponibilizar em Cloud.
