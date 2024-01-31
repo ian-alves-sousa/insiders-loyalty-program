@@ -138,7 +138,7 @@ Foi encontrado os melhores parâmetros que faziam a clusterização convergir pa
 
 Através dos clusters gerados pelo modelo, uma análise foi feita com o intuito de entender melhor as características de cada cluster, identificar o cluster Insiders e responder as perguntas de negócio.
 
-### Passo 9. Deploy do Modelo em Produção
+### Passo 10. Deploy do Modelo em Produção
 
 Nesta etapa o projeto é disponibilizado via Dashboard no Metabase com as informações de cada grupo para o programa de fidelidade. Com isso, é desenvolvido uma arquitetura na AWS para colocar esse projeto em produção, com o banco, dataset, encoders, modelos e máquina virtual direto na cloud.
 
