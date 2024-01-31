@@ -151,7 +151,9 @@ Nesta etapa o projeto é disponibilizado via Dashboard no Metabase com as inform
 - No primeiro gráfico podemos ver a proporção que representa o Gross Revenue dos Insiders.
 - Esse comportamento é comum no varejo, onde poucos clientes são responsáveis por uma grande porção da receita.
 
-![H1!](img/H1.png)
+<p align="center">
+  <img src="img/H1.png" alt="H1">
+</p>
 
 ### H2 - Os clientes Insiders retornaram menos de 20% do total de produtos retornados na base.
 
@@ -160,7 +162,9 @@ Nesta etapa o projeto é disponibilizado via Dashboard no Metabase com as inform
 - No gráfico podemos observar que os clientes Insiders são os que mais retornam.
 - Pode ser um comportamento característico desse Ecommerce, onde um grande gasto está atrelado a um alto número de devoluções
 
-![H2!](img/H2.png)
+<p align="center">
+  <img src="img/H2.png" alt="H2">
+</p>
 
 ### H3 - O Preço Médio dos produtos comprados pelo cluster Insiders é maior que o preço médio total e de todos os clusters.
 
@@ -169,7 +173,9 @@ Nesta etapa o projeto é disponibilizado via Dashboard no Metabase com as inform
 - No gráfico observamos o Preço Médio do cluster Insiders é de $20.83, isso significa que em média cada produto comprado pelo cliente Insider custa esse preço.
 - Contudo, ele não é dos maiores, isso indica que para se tornar Insider o cliente não precisa comprar produtos caros, mas isso comprar muitos produtos.
 
-![H3!](img/H3.png)
+<p align="center">
+  <img src="img/H3.png" alt="H3">
+</p>
 
 # 5. Seleção do Modelo de Machine Learning
 
@@ -229,19 +235,19 @@ Esse projeto foi realizado utilizando o Free Tier da AWS, dessa forma, todas as 
 ### 7.2.1 S3
 
 <p align="center">
-  <img src="img/S3.png" alt="S3">
+  <img src="img/S3.jpeg" alt="S3">
 </p>
 
 ### 7.2.2 RDS
 
 <p align="center">
-  <img src="img/RDS.png" alt="RDS">
+  <img src="img/RDS.jpeg" alt="RDS">
 </p>
 
 ### 7.2.3 EC2
 
 <p align="center">
-  <img src="img/EC2.png" alt="EC2">
+  <img src="img/EC2.jpeg" alt="EC2">
 </p>
 
 # 8. Conclusão
